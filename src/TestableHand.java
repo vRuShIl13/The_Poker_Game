@@ -3,6 +3,5 @@ public interface TestableHand extends Handable
 {
 	//To add all the Cardables in the array to the hand.
 	//Assume that the size of the array will be == Handable.HAND_SIZE
-	public void addCards(Cardable[] cards);  
-	
+	public void addCards(Cardable[] cards);
 }

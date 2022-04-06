@@ -11,6 +11,7 @@ public class WhizzAI extends Hand{
     //constructor
     public WhizzAI(){}
 
+    //the alu technique to discard cards
     @Override
     public LinkedList<Cardable> discard() {
         LinkedList<Cardable> discarded = new LinkedList<>();
@@ -21,7 +22,6 @@ public class WhizzAI extends Hand{
        if(findFlush()!= null || findStraight()!= null){ // the hand is good for the cpu will not want to loose it
            return discarded;
        }else{
-
            arr = getAnyPair(getList().toArray(myarray));
            if(arr[3]!=0){//there is a full house , the cpu has a big chance to win
                return discarded;

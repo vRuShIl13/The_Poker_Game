@@ -1,10 +1,13 @@
-import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class JUnitTests {
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class JUnitTests {
 	//Testing the compareTo method.
     @Test
 	@DisplayName("Confirming the player with the highest rank  ")
@@ -34,10 +37,7 @@ public class JUnitTests {
 		TestableHand th2 = new Hand();
 		th2.addCards(cards2);
 
-		assertTrue(th1.compareTo(th2) > 0, "4" +
-				"" +
-				"" +
-				" of a Kind tie but Highest Card wins.");
+		assertTrue(th1.compareTo(th2) > 0, "4" + "" + "" + " of a Kind tie but Highest Card wins.");
 	}
 
 	//Testing the compareTo method when there is a tie in the rank

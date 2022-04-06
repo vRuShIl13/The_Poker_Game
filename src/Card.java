@@ -3,8 +3,6 @@ This class implements the Cardable interface.
 This holds an individual card. with a value and a suit.
  */
 
-
-
 public class Card implements Cardable{
     //value of the card,suit of the card, is the card facing up, is the card selected?
     private int val;
@@ -87,6 +85,8 @@ public class Card implements Cardable{
         }
         return value+suit;
     }
+
+
     public static String getChar(int i){
         String value = "";
         if (i == 11) {

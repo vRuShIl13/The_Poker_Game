@@ -34,9 +34,7 @@ public class Deck implements Deckable{
     //changes the position of the cards in the deck to other random positions.
     @Override
     public void shuffle() {
-
         Collections.shuffle(list);
-
     }
 
     //adding a list to the end of the main list

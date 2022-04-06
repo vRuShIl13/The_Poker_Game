@@ -28,7 +28,6 @@ public class DumbAI extends Hand {
                 getList().set(whichToPick, null);
             }
         }
-
         return discarded;
     }
 

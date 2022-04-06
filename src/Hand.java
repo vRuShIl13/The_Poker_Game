@@ -121,8 +121,6 @@ public class Hand implements TestableHand{
 
         }else{
             //breakdown of the pair types.
-
-
             if(bestHand[0]==4){
                 ch = getSymbol(bestHand[1]);
                 description = "Four of a kind " + ch;
@@ -187,7 +185,7 @@ public class Hand implements TestableHand{
     //this method checks if the cards are all of the same suit.
     public String findFlush(){
         String s ;
-        int highCard;
+
         String ch;
 
         for(int i =0; i< HAND_SIZE-1; i++) {
@@ -207,7 +205,7 @@ public class Hand implements TestableHand{
     //This method sorts the cards from the smallest to the largest and checks if the cards are in a sequence.
     public String  findStraight(){
         int[] bestHand = new int[5];
-        int []cl = new int[5];
+        int []cl ;
         //for downcasting the cardable to card
         Card e = new Card();
         String s ;
@@ -409,81 +407,72 @@ public class Hand implements TestableHand{
         int highCard;
         int highCard2;
         s = h.evaluateHand();
+
         String [] splitIt =  s.split(" ");
         String strength = splitIt[0];
 
-        switch (strength) {
-            case "Straight" -> {
-                if (s.split(" ").length == 4) {
-                    levels[0] = Level.StraightFlush.getValue();
-                    highCard = getValue(splitIt[2]);
-                } else {
-                    levels[0] = Level.Straight.getValue();
-                    highCard = getValue(splitIt[1]);
-                }
-                levels[1] = highCard;
-            }
-            case "Flush" -> {
-                levels[0] = Level.Flush.getValue();
+        if ("Straight".equals(strength)) {
+            if (s.split(" ").length == 4) {
+                levels[0] = Level.StraightFlush.getValue();
+                highCard = getValue(splitIt[2]);
+            } else {
+                levels[0] = Level.Straight.getValue();
                 highCard = getValue(splitIt[1]);
-                levels[1] = highCard;
             }
-            case "Four" -> {
-                levels[0] = Level.FourOfKind.getValue();
-                highCard = getValue(splitIt[4]);
-                levels[1] = highCard;
-            }
-            case "Three" -> {
-                levels[0] = Level.ThreeOfKind.getValue();
-                highCard = getValue(splitIt[4]);
-                levels[1] = highCard;
-            }
-            case "Full" -> {
-                //EDGE CASE
-                levels[0] = Level.FullHouse.getValue();  //the level number
-                if (Objects.equals(splitIt[2], "T")) {
-                    levels[1] = Level.ThreeOfKind.getValue(); //int for 3 of a kind
-                    highCard = getValue(splitIt[3]);
-                    levels[2] = highCard;                    // 3 of a kind high value
-                    if (Objects.equals(splitIt[4], "P")) {
-                        levels[3] = Level.OnePair.getValue(); //pair level int
-                        highCard = getValue(splitIt[5]);
-                        levels[4] = highCard;                  // pair high value
-                    }
-                } else if (Objects.equals(splitIt[2], "P")) {
-                    levels[1] = Level.ThreeOfKind.getValue(); //int for 3 of a kind
+            levels[1] = highCard;
+        } else if ("Flush".equals(strength)) {
+            levels[0] = Level.Flush.getValue();
+            highCard = getValue(splitIt[1]);
+            levels[1] = highCard;
+        } else if ("Four".equals(strength)) {
+            levels[0] = Level.FourOfKind.getValue();
+            highCard = getValue(splitIt[4]);
+            levels[1] = highCard;
+        } else if ("Three".equals(strength)) {
+            levels[0] = Level.ThreeOfKind.getValue();
+            highCard = getValue(splitIt[4]);
+            levels[1] = highCard;
+        } else if ("Full".equals(strength)) {//EDGE CASE
+            levels[0] = Level.FullHouse.getValue();  //the level number
+            if (Objects.equals(splitIt[2], "T")) {
+                levels[1] = Level.ThreeOfKind.getValue(); //int for 3 of a kind
+                highCard = getValue(splitIt[3]);
+                levels[2] = highCard;                    // 3 of a kind high value
+                if (Objects.equals(splitIt[4], "P")) {
+                    levels[3] = Level.OnePair.getValue(); //pair level int
                     highCard = getValue(splitIt[5]);
-                    levels[2] = highCard;                    // 3 of a kind high value
-                    if (Objects.equals(splitIt[4], "T")) {
-                        levels[3] = Level.OnePair.getValue(); //pair level int
+                    levels[4] = highCard;                  // pair high value
+                }
+            } else if (Objects.equals(splitIt[2], "P")) {
+                levels[1] = Level.ThreeOfKind.getValue(); //int for 3 of a kind
+                highCard = getValue(splitIt[5]);
+                levels[2] = highCard;                    // 3 of a kind high value
+                if (Objects.equals(splitIt[4], "T")) {
+                    levels[3] = Level.OnePair.getValue(); //pair level int
 
-                        highCard = getValue(splitIt[3]);
-                        levels[4] = highCard;                  // pair high value
-                    }
+                    highCard = getValue(splitIt[3]);
+                    levels[4] = highCard;                  // pair high value
                 }
             }
-            case "Two" -> {
-                levels[0] = Level.TwoPairs.getValue();
-                highCard = getValue(splitIt[2]);
-                highCard2 = getValue(splitIt[3]);
-                if (highCard > highCard2) {
-                    levels[1] = highCard;
-                    levels[2] = highCard2;
-                } else {
-                    levels[1] = highCard2;
-                    levels[2] = highCard;
-                }
-            }
-            case "One" -> {
-                levels[0] = Level.OnePair.getValue();
-                highCard = getValue(splitIt[2]);
+        } else if ("Two".equals(strength)) {
+            levels[0] = Level.TwoPairs.getValue();
+            highCard = getValue(splitIt[2]);
+            highCard2 = getValue(splitIt[3]);
+            if (highCard > highCard2) {
                 levels[1] = highCard;
+                levels[2] = highCard2;
+            } else {
+                levels[1] = highCard2;
+                levels[2] = highCard;
             }
-            default -> {
-                levels[0] = Level.Nothing.getValue();
-                highCard = getValue(splitIt[1]);
-                levels[1] = highCard;
-            }
+        } else if ("One".equals(strength)) {
+            levels[0] = Level.OnePair.getValue();
+            highCard = getValue(splitIt[2]);
+            levels[1] = highCard;
+        } else {
+            levels[0] = Level.Nothing.getValue();
+            highCard = getValue(splitIt[1]);
+            levels[1] = highCard;
         }
 
 
@@ -492,13 +481,18 @@ public class Hand implements TestableHand{
 
     //this method returns the value of the card.
     public int getValue(String s){
-        return switch (s) {
-            case "A" -> 14;
-            case "K" -> 13;
-            case "Q" -> 12;
-            case "J" -> 11;
-            default -> Integer.parseInt(s);
-        };
+        switch (s) {
+            case "A":
+                return 14;
+            case "K":
+                return 13;
+            case "Q":
+                return 12;
+            case "J":
+                return 11;
+            default:
+                return Integer.parseInt(s);
+        }
     }
 
     //this method will look for the lone card and return its value

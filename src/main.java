@@ -30,6 +30,7 @@ public class main {
         d.print();
         System.out.println(c);
 
+
         Hand h = new Hand();
         Cardable [] cards = {new Card(11, Cardable.Suit.CLUB),
                 new Card(11, Cardable.Suit.CLUB), new Card(14, Cardable.Suit.CLUB),

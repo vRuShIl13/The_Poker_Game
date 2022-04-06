@@ -19,7 +19,7 @@ public class GameLogic implements GameLogicable{
         d = new Deck();
         d.createDeck();
         d.shuffle();
-        d.print();
+
         //where the program starts the gameCount and the current state always start at 1
         currentState = 1;
         gameCount = 1;
@@ -81,7 +81,7 @@ public class GameLogic implements GameLogicable{
             messages[0] = cpuPlayer +" has discarded cards. ";
             messages[1] =  "Each player will be dealt with the same number of cards they discarded. ";
             if(cpuHand instanceof DumbAI) {
-                d.returnToDeck(((DumbAI) cpuHand).discard());
+                d.returnToDeck(cpuHand.discard());
             }else{
                 d.returnToDeck(cpuHand.discard());
             }
@@ -135,10 +135,6 @@ public class GameLogic implements GameLogicable{
         return true;
     }
 
-
-    public void discardCards(Handable h){
-         h.discard();
-    }
     public void drawingCards(Handable h){
         h.draw(d,false);
     }
