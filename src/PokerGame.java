@@ -20,7 +20,6 @@ public class PokerGame
 		//Build a game logic, feed it into the PokerTableDisplay
 		GameLogicable gl = new GameLogic();  //Insert a call to the constructor of your class that implements GameLogicable
 		PokerTableDisplay ptd = new PokerTableDisplay(gl);
-		
 	}
 }
 

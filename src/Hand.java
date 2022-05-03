@@ -494,7 +494,6 @@ public class Hand implements TestableHand{
                 return Integer.parseInt(s);
         }
     }
-
     //this method will look for the lone card and return its value
     // this method is used when there is a tie in 1 pair /2 pair
     public int getTieBreaker(Hand o){

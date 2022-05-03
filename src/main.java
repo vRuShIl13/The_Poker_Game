@@ -1,61 +1,77 @@
-//just for testing stuff right now
+class Main {
 
-import java.util.LinkedList;
-import java.util.List;
+    public static void main(String[] args) {
+        int[] A = {78,6,5,46,78,1,46};
+        int lo=0;
+        int hi= A.length-1;
+        int wah = mergeSortRecurse(A,lo,hi);
+        System.out.println( wah);
+//        for(int i=0; i < A.length; i++);
+//        {
+//
+//        }
+        System.out.print("[ ");
+        for(int i=0; i < A.length; i++)
+        {
+            System.out.print(A[i] + " ");
+        }
+        System.out.print("]");
 
-public class main {
+    }
+    private static int mergeSortRecurse(int[] A, int lo, int hi) {
+        if (lo < hi) {
+            int mid = (lo + hi) / 2;
+            mergeSortRecurse(A, lo, mid);
+            mergeSortRecurse(A, mid + 1, hi);
+            int m = merge(A, lo, mid, hi);
+            return m;
+        }
+            return 0;
+    }
 
+    private static int merge(int[] A, int lo, int mid, int hi) {
+        int n = hi - lo + 1;
 
-    public static void main(String[] args)
-    {
-        Deck d = new Deck();
-        d.createDeck();
-
-        Cardable c = d.drawACard(true);
-
-
-        LinkedList<Cardable> l = new LinkedList<>();
-        l.add(c);
-        c = d.drawACard(true);
-        l.add(c);
-        c = d.drawACard(true);
-        l.add(c);
-        c = d.drawACard(true);
-        l.add(c);
-        c = d.drawACard(true);
-        l.add(c);
-        System.out.println(l);
-        d.print();
-        d.returnToDeck(l);
-        d.print();
-        System.out.println(c);
-
-
-        Hand h = new Hand();
-        Cardable [] cards = {new Card(11, Cardable.Suit.CLUB),
-                new Card(11, Cardable.Suit.CLUB), new Card(14, Cardable.Suit.CLUB),
-                new Card(11, Cardable.Suit.CLUB), new Card(5, Cardable.Suit.CLUB)};
-
-        cards[1].switchSelectedState();
-        cards[4].switchSelectedState();
-        h.addCards(cards);
-        System.out.println(h.evaluateHand());
-
-        System.out.println(h);
-
-        //this will not work because the deck is already full of cards , no space
-         d.returnToDeck(h.discard());
-         d.print();
-
-        System.out.println(h);
-
-        h.draw(d,true);
-
-        System.out.println(h);
-
-        d.print();
-
-
-
+        int currSize = 0;
+        int[] merged = new int[n];
+//        for (int i = 0; i < n; i++) {
+//            merged[i] = Integer.MAX_VALUE;
+//        }
+        int i = lo;
+        int j = mid + 1;
+        int k = 0;
+        while ((i < mid + 1) && (j <= hi)) {
+            if (A[i] < A[j]) {
+                merged[k] = A[i];
+                k++;
+                i++;
+            } else if (A[i] > A[j]) {
+                merged[k] = A[j];
+                k++;
+                j++;
+            } else {
+                merged[k] = A[j];
+                k++;
+                i++;
+                j++;
+            }
+            currSize++;
+        }
+        while (i < mid + 1) {
+            merged[k] = A[i];
+            k++;
+            i++;
+            currSize++;
+        }
+        while (j <= hi) {
+            merged[k] = A[j];
+            k++;
+            j++;
+            currSize++;
+        }
+        for (k = 0; k < n; k++) {
+            A[lo + k] = merged[k];
+        }
+        return currSize;
     }
 }

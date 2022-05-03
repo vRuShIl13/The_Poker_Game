@@ -32,14 +32,12 @@ public class JUnitTests {
 		Cardable[] cards1 = {new Card(8, Cardable.Suit.CLUB), new Card(8, Cardable.Suit.HEART), new Card(8, Cardable.Suit.CLUB), new Card(8, Cardable.Suit.CLUB), new Card(12, Cardable.Suit.DIAMOND)};
 		TestableHand th1 = new Hand();
 		th1.addCards(cards1);
-
 		Cardable[] cards2 = {new Card(8, Cardable.Suit.HEART), new Card(8, Cardable.Suit.HEART), new Card(3, Cardable.Suit.HEART), new Card(8, Cardable.Suit.HEART), new Card(8, Cardable.Suit.DIAMOND)};
 		TestableHand th2 = new Hand();
 		th2.addCards(cards2);
 
 		assertTrue(th1.compareTo(th2) > 0, "4" + "" + "" + " of a Kind tie but Highest Card wins.");
 	}
-
 	//Testing the compareTo method when there is a tie in the rank
 	@Test
 	@DisplayName("2 pairs, the higher tie breaker wins")

@@ -1,7 +1,9 @@
 //This class implements Gamelogicable interface
-//This keeps track of everything going on in the game.
+//This keeps track of everything going on in the game
 //players, deck, hand of both players,game number
 
+
+//CHECk the game logic constructor below to swap between the dumbAI and the SmartAI
 
 public class GameLogic implements GameLogicable{
 
@@ -9,7 +11,6 @@ public class GameLogic implements GameLogicable{
     private Hand humanHand;
     private Hand cpuHand;
     private static int gameCount;
-
     private static int currentState;
     private  static int humanWins;
     private static int cpuWins;
@@ -28,8 +29,10 @@ public class GameLogic implements GameLogicable{
         humanHand.createHand(d);
         humanHand.showAllCards();
 
-        //cpuHand = new DumbAI();
-        cpuHand = new WhizzAI();
+
+        //uncomment whizzAi for the smart AI and comment out DUmbAi and vice verca!
+        cpuHand = new DumbAI();
+        //cpuHand = new WhizzAI();
         cpuHand.createHand(d);
     }
 

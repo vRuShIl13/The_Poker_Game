@@ -29,7 +29,6 @@ public class Deck implements Deckable{
             }
         }
     }
-
     //this method is used to shuffle the elements in the list
     //changes the position of the cards in the deck to other random positions.
     @Override

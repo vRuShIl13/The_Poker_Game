@@ -91,7 +91,6 @@ public class PokerTableDisplay
 		contentPanel.setBackground(POKER_TABLE_COLOR);
 		
 		contentPanel.add(centerPanel, BorderLayout.CENTER);
-
 		//Adding the CPU hand:
 		humanHD = new HandDisplay(gameLogic.getCPUHand(), false);
 		contentPanel.add(humanHD, BorderLayout.NORTH);

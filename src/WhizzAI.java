@@ -10,7 +10,6 @@ public class WhizzAI extends Hand{
 
     //constructor
     public WhizzAI(){}
-
     //the alu technique to discard cards
     @Override
     public LinkedList<Cardable> discard() {

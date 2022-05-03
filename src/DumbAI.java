@@ -10,14 +10,13 @@ public class DumbAI extends Hand {
     //constructor
     public DumbAI(){
     }
-
     //discard cards randomly from the hand.
     //SELECT random cards.
     public LinkedList<Cardable> discard(){
         LinkedList<Cardable> discarded = new LinkedList<>();
         Random rand = new Random();
         int upperB = 5;
-        int howMany = rand.nextInt(0,upperB);
+        int howMany = rand.nextInt(upperB);
         int whichToPick;
 
         for (int i = 0; i <= howMany; i++){

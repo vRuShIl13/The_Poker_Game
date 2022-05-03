@@ -6,7 +6,6 @@ public interface Handable extends Comparable<Handable>
 	//Constants:
 	public static final int HAND_SIZE = 5;
 
-
 	//Methods:
 	public Cardable getCard(int i);  //Returns the ith Cardable element of the hand.
 	
